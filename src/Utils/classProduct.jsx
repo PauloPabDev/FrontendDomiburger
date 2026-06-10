@@ -130,7 +130,7 @@ class CheesecakeFresa extends Producto {
     this.name = PRODUCTS.CheesecakeFresa
     this.id = `43`
     this.type = 'product'
-    this.price = 12500
+    this.price = 14000
   }
 }
 
