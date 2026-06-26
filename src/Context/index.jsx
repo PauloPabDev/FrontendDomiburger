@@ -61,6 +61,7 @@ export const ContextProvider = ({ children }) => {
   }, [kitchenSelectId]);
 
   const changeKitchen = (id) => {
+    kitchenIdRef.current = id;
     setKitchenSelectId(id);
   };
 
@@ -82,18 +83,13 @@ export const ContextProvider = ({ children }) => {
       changeKitchen(null);
       return;
     }
-    if (assignedKitchens.length === 1) {
-      changeKitchen(assignedKitchens[0]);
+    // Si la cocina guardada sigue siendo válida, mantenerla
+    if (kitchenSelectId && assignedKitchens.includes(kitchenSelectId)) {
       return;
     }
-    if (kitchenSelectId) {
-      const kitchen = assignedKitchens.find(kitchen => kitchen.id === kitchenSelectId);
-      if (kitchen) {
-        changeKitchen(kitchen);
-        return;
-      }
-    }
-  }, [usuarioActual]);
+    // Asignar la primera cocina disponible por defecto
+    changeKitchen(assignedKitchens[0]);
+  }, [userData]);
 
   // Función para emitir login
   const emitLogin = useCallback(() => {

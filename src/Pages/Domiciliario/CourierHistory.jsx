@@ -1,6 +1,6 @@
 import { Alert, Container, Spinner, Row, Col, Card, ProgressBar } from "react-bootstrap";
 import { useEffect } from "react";
-import { OrdersRowsContainer } from "../../components/Order/OrdersRowsContainer.jsx";
+import { CourierOrderHistoryCard } from "../../components/Order/CourierOrderHistoryCard.jsx";
 import { useOrderFindHistoryByCourier } from "../../hooks/api/order/useOrderFindHistoryByCourier.jsx";
 import { useAuth } from "../../Context/AuthContext.jsx";
 import { CourierLayout } from "../../Layout/CourierLayout.jsx";
@@ -148,7 +148,9 @@ const CourierHistory = () => {
                   </Card.Body>
                 </Card>
               ) : (
-                <OrdersRowsContainer listOrders={ordenes} />
+                ordenes.map((order) => (
+                  <CourierOrderHistoryCard key={order.id} order={order} />
+                ))
               )}
             </div>
           </>
