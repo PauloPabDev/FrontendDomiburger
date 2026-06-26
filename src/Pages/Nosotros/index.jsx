@@ -14,10 +14,8 @@ const Nosotros = () => {
     const fetchPosts = async () => {
       try {
         const posts = await postInstagram.getPosts(3);
-        console.log('posts', posts);
         setPosts(posts);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
+      } catch (_error) {
       }
     };
     fetchPosts();

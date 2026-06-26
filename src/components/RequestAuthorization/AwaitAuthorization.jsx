@@ -33,7 +33,6 @@ function AwaitAuthorization({ userId }) {
         setAuthorized(false);
       }
     } catch (error) {
-      console.error('Error checking authorization status', error);
     } finally {
       setLoading(false);
     }

@@ -17,7 +17,6 @@ const Chat = () => {
 
     // Manejo de errores de conexión
     socket.on('connect_error', (error) => {
-      console.error("Error de conexión:", error.message);
     });
 
     // Limpiar al desmontar el componente

@@ -90,7 +90,6 @@ const CreateProduct = () => {
       setErrors(formattedErrors);
       toast.error('Error en la validación del formulario');
       setLoading(false);
-      console.log(validation.error);
       return;
     }
 

@@ -13,14 +13,6 @@ const EditarCodigoReferido = ({ token, id }) => {
   const [validCliente, setValidCliente] = useState(false);
   const [cantidadReferidos, setCantidadReferidos] = useState(0);
   const [cantidadPremios, setCantidadPremios] = useState(0);
-  // const [messageInvalid, setMessageInvalid] = useState('Ingresa los datos');
-
-  // const messageInvalids = [
-  //   'Asegúrate de tener el cliente',
-  //   'Asegúrate de tener el dato del codigo',
-  //   'La cantidad de premios y referidos no coinciden, debe ser 1 premio por cada 3 referidos'
-  // ]
-
   const restaurarDatos = () => {
     setTelefono('');
     setDataCliente(null);
@@ -32,15 +24,10 @@ const EditarCodigoReferido = ({ token, id }) => {
         setCantidadReferidos(rta.used.length)
         setCantidadPremios(rta.reward.length)
       })
-      .catch(error => {
-        console.log(error);
-        toast.error('No se pudo encontrar el codigo');
-        // deberíamos mandar un mensaje de error de 404
-      })
+      .catch(() => toast.error('No se pudo encontrar el codigo'))
   }
 
   useEffect(() => {
-    //buscamos le codigo
     findCodigo(id, token)
       .then(rta => {
         rta = rta.body;
@@ -48,11 +35,7 @@ const EditarCodigoReferido = ({ token, id }) => {
         setCantidadReferidos(rta.used.length)
         setCantidadPremios(rta.reward.length)
       })
-      .catch(error => {
-        console.log(error);
-        toast.error('No se pudo encontrar el codigo');
-        // deberíamos mandar un mensaje de error de 404
-      })
+      .catch(() => toast.error('No se pudo encontrar el codigo'))
   }, []);
 
   //cada vez que cambie el cliente

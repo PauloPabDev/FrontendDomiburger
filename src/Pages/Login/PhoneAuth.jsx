@@ -27,7 +27,6 @@ const PhoneAuth = () => {
       setConfirmationResult(result);
       setSuccess("Código enviado, revisa tu teléfono.");
     } catch (error) {
-      console.error("Error al enviar el código:", error);
       setError("Error al enviar el código. Inténtalo nuevamente.");
     }
   };
@@ -42,7 +41,6 @@ const PhoneAuth = () => {
       await confirmationResult.confirm(verificationCode);
       setSuccess("¡Número verificado correctamente!");
     } catch (error) {
-      console.error("Error al verificar código:", error);
       setError("Código incorrecto. Inténtalo de nuevo.");
     }
   };

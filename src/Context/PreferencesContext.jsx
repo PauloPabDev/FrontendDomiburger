@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect } from 'react';
-// import { useLocalStorage } from '../Utils/localStore';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 // Crear el contexto

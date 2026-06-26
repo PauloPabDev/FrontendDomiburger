@@ -17,10 +17,8 @@ const statusNext = (order) => {
   //hacemos una esepcion , si el pago es de tipo tranferiancia   y no esta pagado , le cambiamos el boton para que mande al estado de espera a transferencia
   if (order.payment?.status != 'approved') {
     if (order.status == ORDER_STATUSES.DELIVERED) {
-      console.log('order.paymentMethod', order.paymentMethod)
       if (order.paymentMethod == PAYMENT_METHODS.TRANSFER || order.paymentMethod == PAYMENT_METHODS.BANCOLOMBIA || order.paymentMethod == PAYMENT_METHODS.NEQUI) {
-        console.log('order.paymentMethod', order.paymentMethod)
-        return ORDER_STATUSES.PENDING_PAYMENT
+          return ORDER_STATUSES.PENDING_PAYMENT
       }
     }
   }

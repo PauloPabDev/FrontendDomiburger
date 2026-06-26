@@ -25,7 +25,6 @@ const SignUp = () => {
         navigate(LOGIN_ROUTES.routes.LOGIN_AUTH);
       }, 2000);
     } catch (error) {
-      console.error('Error al registrar:', error);
       if (error.code === 'auth/email-already-in-use') {
         setError('El correo electrónico ya está en uso. Intenta iniciar sesión.');
       } else if (error.code === 'auth/weak-password') {
@@ -45,7 +44,6 @@ const SignUp = () => {
         navigate('/dashboard');
       }, 2000);
     } catch (error) {
-      console.error('Error al registrar con Google:', error);
       if (error.code === 'auth/popup-closed-by-user') {
         setError('La ventana de registro se cerró antes de completar el proceso.');
       } else {

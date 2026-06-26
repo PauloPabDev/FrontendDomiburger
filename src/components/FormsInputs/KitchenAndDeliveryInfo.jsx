@@ -35,7 +35,6 @@ const KitchenAndDeliveryInfo = ({
         toast.error('Error obteniendo la información de la cocina.');
         setDelivery(null);
         setKitchen(null);
-        console.error(error);
       } finally {
         setLoading(false);
       }

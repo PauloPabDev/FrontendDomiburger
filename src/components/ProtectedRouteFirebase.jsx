@@ -9,7 +9,6 @@ const ProtectedRouteFirebase = ({ children }) => {
   if (!usuarioActual) {
     return <Navigate to={LOGIN_ROUTES.routes.LOGIN_AUTH} />;
   }
-  console.log(`pasaste la prueba ...`)
 
   return children ? children : <Outlet />;
 };

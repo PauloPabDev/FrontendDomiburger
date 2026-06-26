@@ -17,7 +17,6 @@ const useAdiciones = () => {
         data = data.filter(e => e.type === 'complement');
         setAdiciones(data);
       } catch (error) {
-        console.error(error);
         toast.error('Error obteniendo las adiciones.');
       }
     };

@@ -50,8 +50,7 @@ const UserDetail = () => {
       const service = new UsersService(token);
       const res = await service.getByIdUser(id);
       setUser(res?.body || res);
-    } catch (err) {
-      console.error('Error fetching user:', err);
+    } catch (_err) {
       setError('No se pudo cargar la información del usuario.');
       toast.error('Error al cargar el usuario');
     } finally {

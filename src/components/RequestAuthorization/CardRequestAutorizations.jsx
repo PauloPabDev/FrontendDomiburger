@@ -27,7 +27,6 @@ const CardRequestAutorizations = ({ id, name, email, storeId, onRequestUpdate })
       }
     } catch (error) {
       // Manejar error y notificar al usuario
-      console.error('Error al aprobar la solicitud:', error);
       notify.notifyError('Error al aprobar la solicitud. Por favor, inténtalo nuevamente.');
     }
   };
@@ -50,7 +49,6 @@ const CardRequestAutorizations = ({ id, name, email, storeId, onRequestUpdate })
       }
     } catch (error) {
       // Manejar error y notificar al usuario
-      console.error('Error al rechazar la solicitud:', error);
       notify.notifyError('Error al rechazar la solicitud. Por favor, inténtalo nuevamente.');
     }
   };

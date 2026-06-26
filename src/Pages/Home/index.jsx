@@ -9,7 +9,6 @@ const Experimentos = () => {
   useEffect(() => {
     const getToken = async () => {
       const getToken = await getIdToken(FirebaseAuth.currentUser);
-      console.log('Token:', getToken);
       setToken(getToken);
     };
     getToken();

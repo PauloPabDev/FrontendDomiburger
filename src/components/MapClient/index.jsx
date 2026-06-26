@@ -13,7 +13,6 @@ const MapClient = ({ coordinates }) => {
     lng: -75.576
   })
   useEffect(() => {
-    console.log(`uer `, coordinates);
     if (coordinates === undefined) return
     setCenterMaps(coordinates)
   }, [coordinates])
@@ -22,8 +21,6 @@ const MapClient = ({ coordinates }) => {
     width: '100%', // Establece el ancho al 100% del contenedor padre
     height: '20vh', // Establece la altura al 100% de la altura de la ventana
   };
-  console.log(`centerMaps : `, centerMaps);
-  console.log(`coordinates : `, coordinates);
 
   return (
     <>

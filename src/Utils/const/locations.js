@@ -5,4 +5,8 @@ const LOCATIONS = {
   OFFICE: { name: 'Oficina', value: 'office', active: true },
 }
 
-export { LOCATIONS }
+const CENTER_ORIGIN = { lat: 6.3017314, lng: -75.5743796 };
+
+const MAP_BOUNDS_OFFSET = 1.5;
+
+export { LOCATIONS, CENTER_ORIGIN, MAP_BOUNDS_OFFSET }

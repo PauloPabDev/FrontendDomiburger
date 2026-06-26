@@ -24,7 +24,6 @@ const EditClient = ({ client, setClient }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const rta = await updateClient(client.id, newDataClient);
-    console.log("🚀 ~ handleSubmit ~ rta:", rta)
     if (rta) {
       setClient((prev) => ({
         ...prev,

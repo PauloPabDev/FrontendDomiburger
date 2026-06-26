@@ -39,7 +39,6 @@ const Domiciliario = () => {
             });
           }
         } catch (error) {
-          console.error("Error obteniendo la ubicación:", error);
         }
       }
     };

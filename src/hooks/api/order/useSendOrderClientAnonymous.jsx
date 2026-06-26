@@ -37,7 +37,6 @@ const useSendOrderClientAnonymous = () => {
       };
 
       const response = await service.createPublic(order);
-      console.log(`⭐⭐⭐ data del pedido ⭐⭐⭐`, response);
       setResponse(response);
     } catch (error) {
       setError(error);

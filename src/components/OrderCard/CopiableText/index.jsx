@@ -11,7 +11,6 @@ const CopiableText = ({ text }) => {
       setCopied(true);
       setTimeout(() => setCopied(false), 1000); // Resetear el estado después de 2 segundos
     } catch (err) {
-      console.error('Error al copiar texto: ', err);
     }
   };
 

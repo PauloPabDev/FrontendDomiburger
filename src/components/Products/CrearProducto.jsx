@@ -42,7 +42,6 @@ const CrearProducto = () => {
       setImagePreview("");
     } catch (error) {
       toast.error("No se pudo crear el producto");
-      console.error(error);
     }
   };
 

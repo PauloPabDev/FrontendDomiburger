@@ -39,7 +39,6 @@ const UsersManagement = ({ Layout }) => {
     } catch (err) {
       setError('Error al cargar los usuarios');
       toast.error('Error al cargar los usuarios');
-      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -85,7 +84,6 @@ const UsersManagement = ({ Layout }) => {
       fetchUsers();
     } catch (err) {
       toast.error('Error al actualizar roles');
-      console.error(err);
     }
   };
 
@@ -97,7 +95,6 @@ const UsersManagement = ({ Layout }) => {
       fetchUsers();
     } catch (err) {
       toast.error('Error al actualizar cocinas');
-      console.error(err);
     }
   };
 

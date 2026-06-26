@@ -5,6 +5,7 @@ import { BsFillGeoAltFill } from "react-icons/bs";
 import { Button, Col, Row, Modal } from "react-bootstrap";
 import WhatsAppButton from "../WhatsAppButton";
 import "./MapComponent.css";
+import { MAP_BOUNDS_OFFSET } from "../../Utils/const/locations";
 
 
 const MapComponent = ({ center, stateCoordenadas, stateDireccion, errors }) => {
@@ -72,10 +73,10 @@ const MapComponent = ({ center, stateCoordenadas, stateDireccion, errors }) => {
       <Autocomplete Autocomplete
         onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
         bounds={{
-          north: center.lat + 1.5,
-          south: center.lat - 1.5,
-          east: center.lng + 1.5,
-          west: center.lng - 1.5,
+          north: center.lat + MAP_BOUNDS_OFFSET,
+          south: center.lat - MAP_BOUNDS_OFFSET,
+          east: center.lng + MAP_BOUNDS_OFFSET,
+          west: center.lng - MAP_BOUNDS_OFFSET,
         }}
         fields={["geometry", "name", "formatted_address", "address_components", "types"]}
         options={{

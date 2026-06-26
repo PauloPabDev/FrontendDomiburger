@@ -44,7 +44,7 @@ const DomiciliarioHistory = () => {
         data = data.map(e => e.data)
         setPedidos(data)
       })
-      .catch(error => { console.log(error); })
+      .catch(() => {})
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
 

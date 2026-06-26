@@ -18,7 +18,7 @@ const useOrderHistory = () => {
       const response = await orderService.getOrdersByUserCreate({ userCreateId, startDate, endDate });
       setOrdenes(response);
     } catch (error) {
-      setError(error.message);
+      setError(error?.message || 'Error al cargar historial');
     }
     setLoading(false);
   }, [orderService, usuarioActual?.uid]);

@@ -7,7 +7,6 @@ import { UserLayout } from '../../Layout/UserLayout';
 
 const MiPedido = () => {
   const [storedOrder] = useLocalStorage('orderCreate', null);
-  console.log(`[ ~ MiPedido ~ storedOrder]`, storedOrder);
 
   const { name, phone, address, priceTotal, estado, order } = storedOrder;
 

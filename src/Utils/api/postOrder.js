@@ -11,8 +11,6 @@ const postOrder = async (order, token, isAdmin = false) => {
 
   if (rta?.response?.status != 201 && rta?.response?.status != 200) {
     //es un error
-    console.error(`error al crear el pedido ${rta?.response?.status}`)
-    console.log(body)
     throw body
   }
 

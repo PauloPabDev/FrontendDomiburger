@@ -28,7 +28,6 @@ export const CacheProvider = ({ children }) => {
       usersCache.set(id, user);
       return user;
     } catch (error) {
-      console.error('Error fetching user:', error);
       return null;
     }
   }, [usersService]);
@@ -46,7 +45,6 @@ export const CacheProvider = ({ children }) => {
       clientsCache.set(id, client);
       return client;
     } catch (error) {
-      console.error('Error fetching client:', error);
       return null;
     }
   }, [clientsService]);
@@ -64,7 +62,6 @@ export const CacheProvider = ({ children }) => {
       locationsCache.set(id, location);
       return location;
     } catch (error) {
-      console.error('Error fetching location:', error);
       return null;
     }
   }, [locationsService]);
@@ -96,7 +93,6 @@ export const CacheProvider = ({ children }) => {
           locationsCache.set(id, location);
           return { id, location };
         } catch (error) {
-          console.error(`Error fetching location ${id}:`, error);
           return { id, location: null };
         }
       });

@@ -28,7 +28,6 @@ class UsersService {
       const rta = await this.api.patch(`/`, { phone })
       return rta
     } catch (error) {
-      console.log(`[ ~ UsersService ~ updatePhone ~ error]`, error)
       throw error;
     }
   }
@@ -38,7 +37,6 @@ class UsersService {
       const rta = await this.api.patch(`/role/${id}`, data)
       return rta
     } catch (error) {
-      console.log(`[ ~ UsersService ~ updatePhone ~ error]`, error)
       throw error;
     }
   }
@@ -49,7 +47,6 @@ class UsersService {
       return rta
     }
     catch (error) {
-      console.log(`[ ~ UsersService ~ updateAssignedKitchens ~ error]`, error)
       throw error;
     }
   }
@@ -79,7 +76,6 @@ class UsersService {
       });
       return rta
     } catch (error) {
-      console.log(`[ ~ UsersService ~ create ~ error]`, error)
       throw error;
     }
   }

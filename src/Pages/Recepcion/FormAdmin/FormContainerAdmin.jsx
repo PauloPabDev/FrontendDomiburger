@@ -17,10 +17,10 @@ import NoteClientInput from '../../../components/FormsInputs/NoteClientInput';
 import DashboardProducts from '../../../components/Products/Dashboard/Dashboard';
 import { calculateDeliveryDetails } from '../../../Utils/maps/calculateDeliveryDetails';
 import { useAuth } from '../../../Context/AuthContext';
+import { CENTER_ORIGIN } from '../../../Utils/const/locations';
 
 const ENV = import.meta.env;
 
-const centerOrigin = { lat: 6.3017314, lng: -75.5743796 };
 const libraries = ['places'];
 
  
@@ -40,7 +40,6 @@ const FormContainerAdmin = () => {
   });
   // todos los dato que se envían al servidor
   const [dataCliente, setDataCliente] = useState(null);
-  // const [dataAdrees, setDataAdrees] = useState({});//para guardar la direccion del cliente
   const [telefono, setTelefono] = useState('');
   const [name, setName] = useState('');
   const [clientNote, setNoteClient] = useState('');
@@ -67,7 +66,6 @@ const FormContainerAdmin = () => {
     }
 
     if (address) {
-      console.log('%cEstamos estableciendo la dirección', 'color: purple;')
       const { address_complete, coordinates } = address;
 
       setCoordinates(coordinates);
@@ -91,11 +89,7 @@ const FormContainerAdmin = () => {
 
   //para calcular las distancia y el costo del domicilio
   useEffect(() => {
-    console.log('%cCambio el estado de la direccion de google', 'color: yellow;')
-    if (!isLoaded) {
-      console.log('Cargando Google Maps...')
-      return
-    }
+    if (!isLoaded) return
     //la logica para calcular el tiempo y el precio del domicilio segun las coordenadas y la direccion
     //miramos si es valido el input de la direccion
 
@@ -104,15 +98,9 @@ const FormContainerAdmin = () => {
     // miramos si hay coordenadas
     if (!coordinates) return
 
-    //miramos si las coordenadas son las mismas
-    // if (prevCoordinates &&
-    //   prevCoordinates.lat === coordinates.lat &&
-    //   prevCoordinates.lng === coordinates.lng ) return
-
     setPrevCoordinates(coordinates)
-    calculateDeliveryDetails(centerOrigin, coordinates)
+    calculateDeliveryDetails(CENTER_ORIGIN, coordinates)
       .then((data) => {
-        console.log('Domicilio calculado');
         setDataDomicilio(data);
         toast.success(`Domicilio calculado con éxito: ${data.timeText} y un costo de $${data.price}`);
       })
@@ -151,8 +139,8 @@ const FormContainerAdmin = () => {
     selectDomiciliario ? dataOrder.domiciliario_asignado = { id: selectDomiciliario } : null
 
     //miramos si la nota del cliente cambio
-    if ((typeof (clientNote) == 'string') &&
-      !(dataCliente?.clientNote == undefined && clientNote == '') &&
+    if ((typeof clientNote === 'string') &&
+      !(dataCliente?.clientNote === undefined && clientNote === '') &&
       dataCliente?.clientNote !== clientNote) {
       dataOrder.clientNote = clientNote
     }
@@ -161,16 +149,13 @@ const FormContainerAdmin = () => {
       setLoading(true);
       const rta = await postOrder(dataOrder, token, true)
       const { priceTotal } = rta
-      console.log(rta, '<=rta');
 
       toast.success(`Pedido Creado con un precio de ${priceTotal.COP}`)
-      //limpiamos los datos
       setListaProductosOrder([])
       setDataCliente(null)
       setTelefono('')
       setName('')
       setNoteClient('')
-      // setDireccion({})
       setComment('')
       setPaymentMethod('Efectivo')
       setSelectDomiciliario('')
@@ -185,7 +170,6 @@ const FormContainerAdmin = () => {
       });
 
     } catch (error) {
-      console.log(error, '<=error');
       toast.error('Error al crear el pedido')
       toast.error(error)
     }
@@ -194,72 +178,46 @@ const FormContainerAdmin = () => {
   }
 
   const agregarCodigo = (dataCode) => {
-    const checkIfAdicionExists = (newListaProductosOrder, dataCode) => {
-      const isAdicion = newListaProductosOrder.find(e => {
-        let o = false;
-        // Verifica si existe la propiedad 'modifique' y si contiene el código que estamos buscando
-        if (e?.modifique) {
-          o = e.modifique.find(modificado => modificado.code == dataCode.id);
-        }
-        // Retorna true si el código actual o el código modificado coincide con el que estamos buscando
-        if (e?.code == dataCode.id || o) {
-          return true;
-        }
-        return false;
+    const codigoYaExiste = (lista, dataCode) => {
+      const existe = lista.find(e => {
+        const enModifique = e?.modifique?.find(m => m.code == dataCode.id);
+        return e?.code == dataCode.id || enModifique;
       });
-
-      // Si ya existe en la lista de productos, muestra el error y retorna true
-      if (isAdicion) {
+      if (existe) {
         toast.error('Ya tienes este código en tu pedido');
         return true;
       }
-
-      // Si no existe, retorna false
       return false;
-    }
+    };
 
-    //miramos la información del codigo y evaluamos si se agrega premio o como referido
-    let newListaProductosOrder = [...listaProductosOrder]
-    if (dataCode.type == 'Referido') {
-
-      if (dataCode?.clientId == dataCliente?.id) {
-        //es un premio
-        const premios = dataCode.productsReward
-        const productReward = new Producto(premios[0])
-
-        if (checkIfAdicionExists(newListaProductosOrder, dataCode)) return
-
-        newListaProductosOrder.push(productReward)
-        setListaProductosOrder(newListaProductosOrder)
-
-      } else {
-        //es un referido
-        //tenemos que mirar si hay una hamburguesa o combo a que agregar en la lista
-        const isProducto = newListaProductosOrder.reverse().findIndex(e => e.type == 'product')
-
-        if (isProducto == -1) {
-          toast.error('no se encontró ningún producto para agregar el codigo');
-          return
-        }
-
-        const adicion = new Adiciones(dataCode.products[0])
-        //miramos que no tenga ya el codigo
-        if (checkIfAdicionExists(newListaProductosOrder, dataCode)) return
-
-        newListaProductosOrder[isProducto].modifique.push(adicion)
-        setListaProductosOrder(newListaProductosOrder.reverse())
-
-      }
-    } else {
+    if (dataCode.type !== 'Referido') {
       toast.error('no tenemos soporte para este tipo de codigo :(');
+      return;
     }
+
+    const lista = [...listaProductosOrder];
+
+    if (dataCode?.clientId == dataCliente?.id) {
+      const productReward = new Producto(dataCode.productsReward[0]);
+      if (codigoYaExiste(lista, dataCode)) return;
+      setListaProductosOrder([...lista, productReward]);
+      return;
+    }
+
+    const listaInvertida = lista.reverse();
+    const indexProducto = listaInvertida.findIndex(e => e.type == 'product');
+    if (indexProducto === -1) {
+      toast.error('no se encontró ningún producto para agregar el codigo');
+      return;
+    }
+    if (codigoYaExiste(listaInvertida, dataCode)) return;
+
+    const adicion = new Adiciones(dataCode.products[0]);
+    listaInvertida[indexProducto].modifique.push(adicion);
+    setListaProductosOrder(listaInvertida.reverse());
   }
 
-  const retirarCodigo = (dataCode) => {
-    //miramos la información del codigo y evaluamos si se agrega premio o como referido
-    console.log(dataCode, '<=dataCode');
-
-  }
+  const retirarCodigo = (_dataCode) => {}
 
   return (
     <Container>
@@ -287,7 +245,7 @@ const FormContainerAdmin = () => {
       {/* solo si isLoaded esta en true */}
       {isLoaded &&
         <MapComponent
-          center={centerOrigin}
+          center={CENTER_ORIGIN}
           stateCoordenadas={[coordinates, setCoordinates]}
           stateDireccion={[inputDataDireccion, setInputDataDireccion]}
           errors={[null, null]}

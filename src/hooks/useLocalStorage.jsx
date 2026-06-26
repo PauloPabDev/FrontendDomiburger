@@ -11,7 +11,6 @@ function useLocalStorage(key, initialValue) {
       // Intentamos parsear el valor obtenido
       return JSON.parse(item);
     } catch (error) {
-      console.error(`Error al parsear la key "${key}" en localStorage:`, error);
       // Si hay error, eliminamos el valor corrupto para evitar futuros problemas
       window.localStorage.removeItem(key);
       return initialValue;
@@ -25,7 +24,6 @@ function useLocalStorage(key, initialValue) {
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
-      console.error(`Error al guardar la key "${key}" en localStorage:`, error);
     }
   };
 

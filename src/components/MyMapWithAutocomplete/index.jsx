@@ -96,7 +96,6 @@ const MapComponent = ({ objAdrees, setObjAdrees }) => {
       autocomplete.addListener('place_changed', async () => {
         const place = autocomplete.getPlace();
         if (!place?.geometry) {
-          console.error('No se encontraron detalles de la ubicación.');
           return;
         }
 
@@ -138,7 +137,6 @@ const MapComponent = ({ objAdrees, setObjAdrees }) => {
           if (status === 'OK' && response?.rows[0]?.elements[0]) {
             resolve(response.rows[0].elements[0]);
           } else {
-            console.error('Error con la API de Distance Matrix');
             resolve(null);
           }
         }

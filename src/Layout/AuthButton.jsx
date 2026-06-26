@@ -11,9 +11,7 @@ const AuthButton = () => {
   const handleLogout = async () => {
     try {
       await signOut(FirebaseAuth);
-      console.log("Sesión cerrada con éxito");
     } catch (error) {
-      console.error("Error al cerrar sesión:", error);
     }
   };
 

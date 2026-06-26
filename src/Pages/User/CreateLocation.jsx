@@ -17,7 +17,6 @@ const ENV = import.meta.env;
 const LIBRARIES = ['places'];
 
 const listTypes = Object.values(LOCATIONS).map((location) => location.value);
-console.log(`[ ~ listTypes]`, listTypes)
 
 const createLocationSchema = Joi.object({
   address: Joi.string().min(3).max(255).required().messages({ 'any.required': 'Establece una dirección', 'string.min': 'La dirección debe tener al menos 3 caracteres', 'string.empty': 'Debes ingresar un valor' }),

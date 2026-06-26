@@ -21,7 +21,7 @@ const EstadisticasDomiciliarios = () => {
         data = data.map(e => e.data)
         setPedidos(data)
       })
-      .catch(error => { console.log(error); })
+      .catch(() => {})
   }, [token])
 
 

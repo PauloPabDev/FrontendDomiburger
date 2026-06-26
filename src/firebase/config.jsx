@@ -19,7 +19,6 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || ''
 };
 
-console.log("Configuración de Firebase:", firebaseConfig);
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
@@ -27,7 +26,6 @@ const FirebaseAuth = getAuth(app);
 
 // Conecta con el emulador de autenticación si estás en desarrollo (localhost)
 if (ENV.DEV || ENV.VITE_NODE_ENV === "development") {
-  console.log("Conectando con el emulador de autenticación...");
   connectAuthEmulator(FirebaseAuth, getUrlAuth());
 }
 
@@ -35,10 +33,8 @@ const configureRecaptcha = () => {
   window.recaptchaVerifier = new RecaptchaVerifier(FirebaseAuth, "recaptcha-container", {
     size: "invisible",
     callback: (response) => {
-      console.log("reCAPTCHA resuelto", response);
     },
     "expired-callback": () => {
-      console.log("reCAPTCHA expirado, recargar página");
     },
   });
 };

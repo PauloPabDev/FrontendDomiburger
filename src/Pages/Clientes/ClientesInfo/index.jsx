@@ -45,11 +45,9 @@ const ClienteInfo = () => {
         const ordersResponse = await orderService.getByClientId(id);
         setOrders(Array.isArray(ordersResponse) ? ordersResponse : []);
       } catch (orderErr) {
-        console.error('Error fetching orders:', orderErr);
         setOrders([]);
       }
     } catch (err) {
-      console.error('Error fetching client:', err);
       setError('Error al cargar los datos del cliente');
       toast.error('Error al cargar los datos del cliente');
     } finally {

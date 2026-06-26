@@ -30,7 +30,6 @@ const AdminKitchens = () => {
       const params = { page, limit };
 
       const data = await kitchensService.getAll(params);
-      console.log(`[ ~ fetchKitchens ~ data]`, data)
       setKitchens(data?.body || []);
     } catch (error) {
       setError('Error al cargar los usuarios');

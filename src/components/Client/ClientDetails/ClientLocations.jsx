@@ -19,7 +19,6 @@ const ClientLocations = ({ clientId }) => {
       const data = await locationsService.getByIdClient(clientId);
       setLocations(data?.body || data || []);
     } catch (err) {
-      console.error('Error fetching locations:', err);
       setError('Error al cargar las ubicaciones');
       setLocations([]);
     } finally {

@@ -20,7 +20,6 @@ class ClientsService {
       const rta = await this.api.patch(`/`, { phone })
       return rta
     } catch (error) {
-      console.log(`[ ~ UsersService ~ updatePhone ~ error]`, error)
       throw error;
     }
   }
@@ -30,7 +29,6 @@ class ClientsService {
       const rta = await this.api.patch(`/role/${id}`, data)
       return rta
     } catch (error) {
-      console.log(`[ ~ UsersService ~ updatePhone ~ error]`, error)
       throw error;
     }
   }
@@ -41,15 +39,12 @@ class ClientsService {
       return rta
     }
     catch (error) {
-      console.log(`[ ~ UsersService ~ updateAssignedKitchens ~ error]`, error)
       throw error;
     }
   }
   async update(id, data) {
     try {
       const rta = await this.api.put(`/${id}`, data)
-      console.log("🚀 ~ ClientsService ~ update ~ rta:", rta)
-
       return rta.data
     } catch (error) {
       throw error.response.data
@@ -85,7 +80,6 @@ class ClientsService {
       const rta = await this.api.post(`/`, data);
       return rta.data
     } catch (error) {
-      console.log(`[ ~ UsersService ~ create ~ error]`, error)
       throw error;
     }
   }

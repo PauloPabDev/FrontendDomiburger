@@ -3,7 +3,6 @@ import "./ProductsTable.css";
 import { ItemProductBadge } from "../Products/ItemProductBadge";
 const ProductsTable = ({ orderItems }) => {
 
-  console.log(orderItems, 'orderItems en ProductsTable')
   return (
     <Table striped bordered hover responsive className="products-table">
       <thead>

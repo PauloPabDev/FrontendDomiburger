@@ -2,7 +2,6 @@ import { UtilsApi } from "../utilsApi"
 
 export const findClientForPhone = async (telefono, token) => {
   try {
-    console.log(`Buscar Cliente por Telefono: ${telefono}`)
     const data = {
       filter: [
         {

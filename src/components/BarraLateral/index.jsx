@@ -28,7 +28,6 @@ const BarraLateral = ({ modoOscuro }) => {
 
   const activeListIsActive = (idDomiciliriario) => {
     const domiciliarioIndex = listDomiciliarios.findIndex(id => id === idDomiciliriario)
-    console.log("🚀  ~ domiciliarioIndex:", domiciliarioIndex)
     if (domiciliarioIndex === -1) {
       //agregamos el domiciliario
       contextRecepcion.setDomiciliariosSeleccionados([...listDomiciliarios, idDomiciliriario])

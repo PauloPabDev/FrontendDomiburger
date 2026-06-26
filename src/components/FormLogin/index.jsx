@@ -69,7 +69,6 @@ function FormLogin() {
         setMessageErrorLogin('Usuario o contraseña incorrectas');
       }
     } catch (error) {
-      console.error("Error en el login:", error);
       setMessageErrorLogin("Error al conectar con el servidor.");
     } finally {
       setLoading(false); // Desactiva el estado de carga

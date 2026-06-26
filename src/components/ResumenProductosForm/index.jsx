@@ -23,7 +23,6 @@ const ResumenProductosForm = ({ listaProducto, setListaProducto, delivery }) => 
 
   useEffect(() => {
     if (error) {
-      console.log("🚀 ~ useEffect ~ error:", error)
       toast.error('Error obteniendo las adiciones.');
     }
   }, [error])

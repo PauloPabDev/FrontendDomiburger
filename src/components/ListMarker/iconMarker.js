@@ -21,9 +21,7 @@ const iconMarker = (estado) => {
   }
   if (!estado) return generateSvgColor("#000000")
 
-  const icon = markerColorStates(estado)
-  console.groupEnd()
-  return icon
+  return markerColorStates(estado)
 }
 
 export { iconMarker }

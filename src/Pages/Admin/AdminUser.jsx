@@ -2,7 +2,7 @@ import { Button, Container, InputGroup, Form, Spinner, Row, Col } from 'react-bo
 import LayoutAdmin from '../../Layout/Admin';
 import PaginationComponent from '../../components/Pagination';
 import { ListCardsElements } from '../../components/common/ListCards';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { UsersService } from '../../apis/clientV2/usersService';
 import { useAuth } from '../../Context/AuthContext';
@@ -21,7 +21,7 @@ const AdminUser = () => {
   const page = parseInt(searchParams.get('page') || '1', 10);
 
   const { token } = useAuth();
-  const usersService = new UsersService(token);
+  const usersService = useMemo(() => new UsersService(token), [token]);
 
   // Función para obtener los usuarios de la API
   const fetchUsers = async () => {

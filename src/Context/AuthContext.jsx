@@ -19,11 +19,9 @@ export const AuthProvider = ({ children }) => {
   const refreshToken = async () => {
     if (usuarioActual) {
       try {
-        const newToken = await getIdToken(usuarioActual, true); // true fuerza la actualización
+        const newToken = await getIdToken(usuarioActual, true);
         setToken(newToken);
-        console.log("Nuevo ID Token:", newToken);
-      } catch (error) {
-        console.error("Error al actualizar el token:", error);
+      } catch (_error) {
       }
     }
   };
@@ -47,8 +45,7 @@ export const AuthProvider = ({ children }) => {
           refreshToken();
         }, delay);
       }
-    } catch (error) {
-      console.error("Error al programar la actualización del token:", error);
+    } catch (_error) {
     }
   };
 
@@ -90,8 +87,7 @@ export const AuthProvider = ({ children }) => {
       try {
         const response = await usersService.me();
         setUserData(response);
-      } catch (error) {
-        console.log(`[ ~ AuthProvider ~ fetchUserData ~ error]`, error);
+      } catch (_error) {
       }
     };
     fetchUserData();
@@ -103,7 +99,6 @@ export const AuthProvider = ({ children }) => {
         const fetchedToken = await getIdToken(user);
         setToken(fetchedToken);
       } else {
-        console.log("No hay usuario autenticado");
         setToken(null);
       }
     });
@@ -112,10 +107,8 @@ export const AuthProvider = ({ children }) => {
   const handleLogout = async () => {
     try {
       await signOut(FirebaseAuth);
-      console.log("Sesión cerrada con éxito");
       navigate(LOGIN_ROUTES.routes.LOGIN_AUTH);
-    } catch (error) {
-      console.error("Error al cerrar sesión:", error);
+    } catch (_error) {
     }
   };
 

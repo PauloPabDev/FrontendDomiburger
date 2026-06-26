@@ -20,20 +20,16 @@ class LocationsService {
   async getByIdUser(id) {
     try {
       const rta = await this.api.get(`/user/${id}`)
-
       return rta.data
     } catch (error) {
-      console.log(`[~LocationsService ~getByIdUser ~error]`, error)
       throw error;
     }
   }
   async getByIdClient(id) {
     try {
       const rta = await this.api.get(`/client/${id}`)
-
       return rta.data
     } catch (error) {
-      console.log(`[~LocationsService ~getByIdClient ~error]`, error)
       throw error;
     }
   }
@@ -44,10 +40,9 @@ class LocationsService {
   }
   async create(data) {
     try {
-      const rta = await this.api.post(`/ `, data);
+      const rta = await this.api.post(`/`, data);
       return rta
     } catch (error) {
-      console.log(`[~LocationsService ~create ~error]`, error)
       throw error;
     }
   }
@@ -56,7 +51,6 @@ class LocationsService {
       const rta = await this.api.post(`/public`, data);
       return rta
     } catch (error) {
-      console.log(`[~LocationsService ~createPublic ~error]`, error)
       throw error;
     }
   }
@@ -66,7 +60,6 @@ class LocationsService {
       const rta = await this.api.delete(`/${id}`);
       return rta
     } catch (error) {
-      console.log(`[~LocationsService ~delete ~error]`, error)
       throw error;
     }
   }

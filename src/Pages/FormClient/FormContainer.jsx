@@ -25,8 +25,6 @@ const FormContainer = () => {
   const [comment, setComment] = useState('');
   const { Component: PaymentMethodInput, paymentMethod } = usePaymentMethodCom();
   const [listaProductosOrder, setListaProductosOrder] = useState([]);
-  // const [storedOrder, setStoredOrder] = useLocalStorage('order', {});
-
   const [delivery, setDelivery] = useState(null);
   const [location, setLocation] = useState(null);
   const [kitchen, setKitchen] = useState(null);
@@ -68,7 +66,6 @@ const FormContainer = () => {
       if (product?.modifique && product?.modifique.length > 0) r.complements = product?.modifique.map(complement => ({ id: complement.id }))
       return r;
     })
-    console.log('orderItems', orderItems)
     sendOrder({
       delivery,
       assignedKitchenId: kitchen?.id,
@@ -108,7 +105,6 @@ const FormContainer = () => {
       //los mandamos a la pagina de gracias
       //guradamos la orden en el local storage
       setOrderCreateLocal(response.data.body);
-      console.log("🚀 ~ useEffect ~ response.data.body:", response.data.body)
       navigate('/gracias');
 
 

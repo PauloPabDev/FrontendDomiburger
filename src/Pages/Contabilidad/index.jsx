@@ -118,7 +118,6 @@ const Contabilidad = () => {
         setPedidos(pedidosData);
       })
       .catch(err => {
-        console.error(err);
         setError('Error al cargar los pedidos.');
       })
       .finally(() => setLoading(false));
@@ -135,7 +134,6 @@ const Contabilidad = () => {
       const pedidosFiltrados = data.map(e => e.data);
       setPedidos(pedidosFiltrados);
     } catch (err) {
-      console.error(err);
       setError('Error al filtrar los pedidos.');
     } finally {
       setLoading(false);

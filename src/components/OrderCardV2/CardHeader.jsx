@@ -27,7 +27,6 @@ const CardHeaderComponent = memo(({ order }) => {
           : null;
       setUserClient(user);
     } catch (error) {
-      console.error("Error fetching user:", error);
     }
     setLoading(false);
   }, [userId, clientId, getUserById, getClientById]);

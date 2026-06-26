@@ -65,12 +65,10 @@ const CreateKitchen = () => {
       setErrors(formattedErrors);
       toast.error('Error en la validación del formulario');
       setLoading(false);
-      console.log(validation.error)
       return;
     }
 
     try {
-      console.log("🚀 ~ handleSubmit ~ yeaaac :", formData)
 
       await kitchensService.create(formData);
       toast.success('¡Cocina creada exitosamente!');

@@ -46,7 +46,6 @@ const UpdateProduct = ({ product, handleClose }) => {
       toast.success("Producto actualizado con éxito!");
       handleClose();
     } catch (err) {
-      console.error(err);
       toast.error("Error al actualizar el producto");
     }
   };

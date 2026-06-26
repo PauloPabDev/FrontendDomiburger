@@ -41,7 +41,6 @@ const VisualizarClientesComponente = () => {
         const data = await clientService.getAll({ page, limit });
         setClients(data?.body);
       } catch (error) {
-        console.log('Error fetching clientes:', error);
         setError('Error fetching clientes');
         toast.error('Error al cargar los clientes');
         toast.error(error.message);
@@ -54,7 +53,6 @@ const VisualizarClientesComponente = () => {
   }, [page]);
 
   const handleCardCreateClientClick = () => {
-    console.log('showCreateClientModal');
     toast.success('showCreateClientModal');
     //los mandamos a la pagina de crear cliente con react router
     navigate('/client/create');

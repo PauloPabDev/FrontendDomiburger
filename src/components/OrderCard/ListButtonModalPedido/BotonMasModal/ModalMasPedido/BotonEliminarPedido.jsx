@@ -13,11 +13,9 @@ const BotonEliminarPedido = ({ idOrder, handleClose }) => {
       const url = `estados/eliminados?idPedido=${idOrder}`;
 
       const response = await UtilsApi({ peticion: url, token, vervo: 'DELETE' });
-      console.log('Pedido eliminado', response);
 
       handleClose();
     } catch (error) {
-      console.error('Error eliminando el pedido:', error);
     } finally {
       setConfirmar(false);
     }

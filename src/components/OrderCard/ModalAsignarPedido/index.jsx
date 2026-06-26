@@ -14,7 +14,6 @@ const ModalAsignarPedido = ({ show, handleClose, nameDomiciliario, idPedido, dat
 
   useEffect(() => {
     if (domiciliarioSelect == 'otros') {
-      console.log('se abre el domidal para selecioanr los dociliarios disponibles');
       contextRecepcion.openCloseModalAgregarDo()
       //deberiamos de poner el select en la opcion por defecto 
     }

@@ -38,20 +38,16 @@ class ProductsService {
   async getByIdUser(id) {
     try {
       const rta = await this.api.get(`/user/${id}`)
-
       return rta
     } catch (error) {
-      console.log(`[~LocationsService ~getByIdUser ~error]`, error)
       throw error;
     }
-
   }
   async create(data) {
     try {
-      const rta = await this.api.post(`/ `, data);
+      const rta = await this.api.post(`/`, data);
       return rta
     } catch (error) {
-      console.log(`[~LocationsService ~create ~error]`, error)
       throw error;
     }
   }

@@ -76,7 +76,6 @@ const OrderSummary = ({ onPrev, location, productOrderList = [], comment, paymen
       toast.success(rta.data.message);
       navigate(USER_ROUTES.routes.THANKS);
     } catch (err) {
-      console.log(`[ ~ sendOrder ~ err]`, err)
       setError("Error al procesar la orden. Intenta nuevamente.");
       toast.error(err.response.data?.message || "Error al procesar la orden. Intenta nuevamente.")
     } finally {

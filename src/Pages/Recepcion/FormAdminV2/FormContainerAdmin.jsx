@@ -73,8 +73,7 @@ const FormContainerAdmin = () => {
 
     setIsLoading(true);
     try {
-      const response = await ordersService.createPublicAdmin(orderData);
-      console.log("Pedido enviado:", response);
+      await ordersService.createPublicAdmin(orderData);
       toast.success("Pedido creado con éxito.");
       // Opcional: Resetear estados o limpiar formulario aquí
       //ponemos los estados en su estado original
@@ -91,7 +90,6 @@ const FormContainerAdmin = () => {
 
 
     } catch (error) {
-      console.error("Error al crear el pedido:", error);
       toast.error("Error al crear el pedido");
     } finally {
       setIsLoading(false);
@@ -110,16 +108,6 @@ const FormContainerAdmin = () => {
     }
   }, [locationIdSelect]);
 
-  useEffect(() => {
-    if (delivery) {
-      console.group("🚚 Delivery Info")
-      console.log("delivery", delivery);
-      console.log("kitchenIdSelect", kitchenIdSelect);
-      console.log("kitchen", kitchen);
-      console.groupEnd()
-    }
-  }
-  , [delivery]);
 
   return (
     <Container>

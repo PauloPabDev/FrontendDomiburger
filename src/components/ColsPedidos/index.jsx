@@ -15,7 +15,6 @@ export const ColsPedidos = ({ pedidos }) => {
     if (domiciliarioIdFilter === "ninguno") {
       return pedidos.filter(pedido => !pedido?.assignedCourierUserId);
     } else if (domiciliarioIdFilter) {
-      console.log("Filtrando por domiciliario:", domiciliarioIdFilter);
       return pedidos.filter(pedido => pedido?.assignedCourierUserId === domiciliarioIdFilter);
     }
     return pedidos;

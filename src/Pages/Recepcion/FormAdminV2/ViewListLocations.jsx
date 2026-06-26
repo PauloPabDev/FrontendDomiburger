@@ -89,7 +89,6 @@ const ViewListLocations = ({
       findLocationsByIdClient(clientId);
     } catch (error) {
       toast.error("Error al eliminar la ubicación. Por favor, intente de nuevo.");
-      console.error("Error eliminando ubicación:", error);
     }
   };
 

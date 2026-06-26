@@ -25,7 +25,6 @@ const InputCodigo = ({ client, dataCode, setDataCode, agregarCodigo, retirarCodi
         setCode('')
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err?.body);
       });
   }

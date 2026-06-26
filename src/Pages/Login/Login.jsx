@@ -28,7 +28,6 @@ const Login = () => {
         navigate(from, { replace: true });
       }, 1000);
     } catch (error) {
-      console.error('Error al iniciar sesión:', error);
       if (error.code === 'auth/wrong-password') {
         setError('La contraseña es incorrecta. Inténtalo de nuevo.');
       } else if (error.code === 'auth/user-not-found') {
@@ -48,7 +47,6 @@ const Login = () => {
         navigate(from, { replace: true });
       }, 1000);
     } catch (error) {
-      console.error('Error al iniciar sesión con Google:', error);
       if (error.code === 'auth/popup-closed-by-user') {
         setError('La ventana de inicio de sesión se cerró antes de completar el proceso.');
       } else {

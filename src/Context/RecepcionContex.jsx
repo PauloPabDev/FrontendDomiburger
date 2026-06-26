@@ -27,7 +27,6 @@ export const ContextProviderRecepcion = ({ children }) => {
       setListDomiciliarios(listDomiciliariosFilter)
       setUsers(usersData.body);
     } catch (error) {
-      console.log("findUser error:", error)
       toast.error(`Error al cargar los domiciliarios ${error?.response?.data?.message}`);
     }
   }, [userService, listDomiciliarios, setListDomiciliarios, setUsers]);

@@ -33,7 +33,6 @@ const VisualizarProductos = () => {
         const limit = 12
 
         const data = await productService.getAll({ page, limit }, token);
-        console.log(`[ ~ fetchProducts ~ data]`, data)
         setProducts(data?.body);
       } catch (error) {
         setError('Error fetching products');
@@ -48,7 +47,6 @@ const VisualizarProductos = () => {
   }, [page]);
 
   const handleCardCreateOrderClick = () => {
-    console.log('handleCardCreateProductClick');
     navigate('/CreateProduct');
   }
 

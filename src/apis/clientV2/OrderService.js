@@ -27,7 +27,6 @@ class OrderService {
   }
   async getFilters(filters) {
     try {
-      //por cada filtro se crea un query
       const query = new URLSearchParams();
       Object.keys(filters).forEach((key) => {
         if (filters[key]) {
@@ -37,7 +36,6 @@ class OrderService {
       const rta = await this.api.get(`/filter?${query.toString()}`)
       return rta.data.body
     } catch (error) {
-      console.log("🚀 ~ OrderService ~ getFilters ~ error:", error)
       throw error?.response?.data
     }
   }
@@ -55,11 +53,9 @@ class OrderService {
   async getByIdUser(id) {
     try {
       const rta = await this.api.get(`/user/${id}`)
-
-      return rta
+      return rta.data.body
     } catch (error) {
-      console.log(`[~LocationsService ~getByIdUser ~error]`, error)
-      throw error;
+      throw error?.response?.data;
     }
   }
   async getOrdersDay({ kitchenId, startDate, endDate }) {
@@ -95,27 +91,23 @@ class OrderService {
 
   }
   async create(data) {
-    const rta = await this.api.post(`/ `, data);
+    const rta = await this.api.post(`/`, data);
     return rta
   }
   async createPublic(data) {
-    const rta = await this.api.post(`/public `, data);
+    const rta = await this.api.post(`/public`, data);
     return rta
   }
   async createPublicAdmin(data) {
-    const rta = await this.api.post(`/public/admin `, data);
+    const rta = await this.api.post(`/public/admin`, data);
     return rta
   }
   async changeStatus(id, previousState, nextState) {
     try {
-      const body = {
-        previousState,
-        nextState
-      }
+      const body = { previousState, nextState }
       const rta = await this.api.patch(`/status/${id}`, body);
       return rta.data
     } catch (error) {
-      console.log("🚀 ~ OrderService ~ changeStatus ~ error:", error)
       throw error?.response?.data
     }
   }
@@ -169,7 +161,6 @@ class OrderService {
       const rta = await this.api.get(`/client/${clientId}?${query.toString()}`);
       return rta.data.body || rta.data;
     } catch (error) {
-      console.log("OrderService ~ getByClientId ~ error:", error);
       throw error?.response?.data;
     }
   }

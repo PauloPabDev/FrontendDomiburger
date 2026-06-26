@@ -90,7 +90,6 @@ const ProgressDataDomiciliario = ({ pedidos }) => {
         if (producto.type == 'domicilio') {
           kilometros = kilometros + producto.distance.value
         } else {
-          console.log(producto.id);
         }
       })
 

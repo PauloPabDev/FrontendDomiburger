@@ -21,7 +21,6 @@ const KitchenAndDeliveryInfoClient = ({
   }, [locationIdSelect, kitchenIdSelect]);
 
   useEffect(() => {
-    console.log("🚀 ~ useEffect ~ responseKitchenAndDelivery:", responseKitchenAndDelivery)
 
     if (responseKitchenAndDelivery?.kitchen) {
       setKitchen(responseKitchenAndDelivery.kitchen);

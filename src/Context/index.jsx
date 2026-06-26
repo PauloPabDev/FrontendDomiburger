@@ -77,7 +77,7 @@ export const ContextProvider = ({ children }) => {
   // Asignación de cocina al inicio
   useEffect(() => {
     const assignedKitchens = userData?.assignedKitchens || [];
-    if (assignedKitchens.length < 0) {
+    if (assignedKitchens.length === 0) {
       toast.error('No tiene cocinas asignadas');
       changeKitchen(null);
       return;
@@ -104,7 +104,6 @@ export const ContextProvider = ({ children }) => {
         kitchenId: kitchenIdRef.current
       };
       socketRef.current.emit('login', params);
-      console.log('Login emitido con:', params.role);
     }
   }, []);
 
@@ -165,20 +164,16 @@ export const ContextProvider = ({ children }) => {
     socketRef.current = io(`${apiUrl}/apiV2`, SOCKET_OPTIONS);
     isSocketInitialized.current = true;
 
-    console.log('Inicializando socket');
     setConnectionStatus(CONNECTION_STATUS.CONNECTING);
 
     // Conexión exitosa
     socketRef.current.on("connect", () => {
-      console.log(`Socket conectado, ID: ${socketRef.current.id}`);
       setConnectionStatus(CONNECTION_STATUS.CONNECTED);
       emitLogin();
     });
 
     // Desconexión
     socketRef.current.on('disconnect', (reason) => {
-      console.log(`Socket desconectado, razón: ${reason}`);
-
       if (reason === 'io client disconnect') {
         setConnectionStatus(CONNECTION_STATUS.DISCONNECTED);
       } else {
@@ -187,20 +182,17 @@ export const ContextProvider = ({ children }) => {
     });
 
     // Error de conexión
-    socketRef.current.on('connect_error', (error) => {
-      console.error('Error de conexión:', error.message);
+    socketRef.current.on('connect_error', () => {
       setConnectionStatus(CONNECTION_STATUS.DISCONNECTED);
     });
 
     // Intentos de reconexión
     if (socketRef.current.io) {
-      socketRef.current.io.on('reconnect_attempt', (attemptNumber) => {
-        console.log(`Intento de reconexión #${attemptNumber}`);
+      socketRef.current.io.on('reconnect_attempt', () => {
         setConnectionStatus(CONNECTION_STATUS.RECONNECTING);
       });
 
       socketRef.current.io.on('reconnect', () => {
-        console.log('Reconexión exitosa');
         setConnectionStatus(CONNECTION_STATUS.CONNECTED);
       });
     }
@@ -217,7 +209,6 @@ export const ContextProvider = ({ children }) => {
 
     // Pedidos iniciales
     socketRef.current.on('order/init', (orders) => {
-      console.log('Pedidos iniciales recibidos:', orders.length);
       const processedOrders = actualizarPedidos(orders);
       setItems(processedOrders);
     });
@@ -244,7 +235,6 @@ export const ContextProvider = ({ children }) => {
 
     // Cuando se remueve un pedido
     socketRef.current.on('order/remove', (pedido) => {
-      console.warn("Pedido removido:", pedido);
       toast(`Pedido removido 🚚, ${pedido.id}`);
       setItems((prevItems) => {
         const mapItems = new Map(prevItems.map((item) => [item.id, item]));
@@ -263,9 +253,7 @@ export const ContextProvider = ({ children }) => {
       });
     });
 
-    // Limpieza solo al desmontar el componente
     return () => {
-      console.warn('Desmontando context, desconectando socket...');
       if (socketRef.current) {
         socketRef.current.removeAllListeners();
         if (socketRef.current.io) {

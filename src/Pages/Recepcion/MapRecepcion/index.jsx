@@ -30,7 +30,6 @@ const MapRecepcionContent = () => {
 
   useEffect(() => {
     if (idItemSelect) {
-      console.log('idItemSelect', idItemSelect);
     }
   }, [idItemSelect]);
 

@@ -30,7 +30,7 @@ const EstadisticasVentasHoy = () => {
         data = data.map(e => e.data)
         setPedidos(data)
       })
-      .catch(error => { console.log(error); })
+      .catch(() => {})
 
 
 
@@ -47,7 +47,7 @@ const EstadisticasVentasHoy = () => {
         data = data.map(e => e.data)
         setPedidosAyer(data)
       })
-      .catch(error => { console.log(error); })
+      .catch(() => {})
 
 
   }, [token])

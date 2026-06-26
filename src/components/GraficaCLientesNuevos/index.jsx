@@ -25,7 +25,6 @@ ChartJS.register(
 )
 
 const GraficaCLientesNuevos = ({ listPedidos, title, nameValueY }) => {
-  console.log("🚀 ~ file: index.jsx:28 ~ GraficaCLientesNuevos ~ listPedidos:", listPedidos)
 
   const timePart = 900; // en segundos
 

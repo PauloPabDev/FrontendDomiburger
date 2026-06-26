@@ -15,7 +15,6 @@ const useShowNotification = () => {
 
   useEffect(() => {
     if (typeof Notification === 'undefined') {
-      console.warn('Este navegador no soporta notificaciones.');
       setPermission('denied');
       return;
     }
@@ -23,7 +22,6 @@ const useShowNotification = () => {
     // En iOS se recomienda solicitar el permiso solo en respuesta a una interacción del usuario.
     // Además, las notificaciones web funcionan sólo en modo standalone.
     if (isIOS && !isStandalone) {
-      console.warn('En iOS, las notificaciones web solo funcionan en aplicaciones instaladas (modo standalone).');
       return;
     }
 
@@ -37,13 +35,11 @@ const useShowNotification = () => {
 
   const notify = useCallback((title, options = {}) => {
     if (typeof Notification === 'undefined') {
-      console.error('Este navegador no soporta notificaciones.');
       return;
     }
 
     // Verificamos nuevamente para iOS sin modo standalone
     if (isIOS && !isStandalone) {
-      console.warn('Las notificaciones en iOS solo funcionan en aplicaciones instaladas.');
       return;
     }
 
@@ -58,7 +54,6 @@ const useShowNotification = () => {
         }
       });
     } else {
-      console.warn('Permiso para notificaciones denegado.');
     }
   }, [permission, isIOS, isStandalone]);
 

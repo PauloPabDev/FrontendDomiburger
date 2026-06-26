@@ -33,7 +33,6 @@ const ClientOrdersHistory = ({ clientId }) => {
       const data = await orderService.getByClientId(clientId);
       setOrders(Array.isArray(data) ? data : []);
     } catch (err) {
-      console.error('Error fetching orders:', err);
       setError('Error al cargar el historial de pedidos');
       setOrders([]);
     } finally {

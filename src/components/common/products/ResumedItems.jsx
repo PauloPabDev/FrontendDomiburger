@@ -4,13 +4,6 @@
  */
 const enrichComplement = (complement, listProducts) => {
   const catalogProduct = listProducts.find((p) => p.id === complement.id);
-  console.log("enrichComplement ~ complement:", complement)
-  console.log("enrichComplement ~ catalogProduct:", catalogProduct)
-  console.log("enrichComplement ~ listProducts:", {
-    ...catalogProduct,      // Datos base del catálogo (colorPrimary, imagen, etc.)
-    ...complement,          // Valores originales del complemento (sobrescriben el catálogo)
-    catalogPrice: catalogProduct?.price,  // Precio del catálogo como referencia
-  })
   if (!catalogProduct) {
     return complement;
   }

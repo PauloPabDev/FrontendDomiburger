@@ -8,7 +8,6 @@ import { NameAndPhoto } from "../common/users/NameAndPhoto";
 import { useWorker } from "../../Context/WorkerContext";
 import { ResumedItems } from "../common/products/ResumedItems";
 import { ProductsTable } from "../OrderCardV2/ProductsTable";
-// import { Timestamp } from "firebase/firestore";
 import { convertToTimestamp } from "../../Utils/formatTime";
 
 const OrderRow = ({ order }) => {
@@ -36,12 +35,6 @@ const OrderRow = ({ order }) => {
 
   const createdAt = convertToTimestamp(order.createdAt);
 
-  useEffect(() => {
-    //mostrar los datos del cliente, repartidor y usuario en consola para verificar que se están obteniendo correctamente
-    console.log("Cliente:", clientData);
-    console.log("Usuario:", userData);
-    console.log("Repartidor:", courierData);
-  }, [clientData, userData, courierData]);
 
 
   return (
@@ -124,13 +117,9 @@ const OrderRow = ({ order }) => {
   );
 };
 
-const Details = ({ order,
-  //  client, delivery, user
-}) => {
+const Details = ({ order }) => {
   const { listProducts } = useWorker();
-  const { component:
-    //  resumedItems, hasComplements,
-    products } = ResumedItems(order?.orderItems, listProducts);
+  const { component: products } = ResumedItems(order?.orderItems, listProducts);
 
   return (
     <div className="p-2">

@@ -19,7 +19,6 @@ const EditAssignedKitchensModal = ({ show, handleClose, assignedKitchens, onSave
   }, [token]);
 
   const handleChage = (idKitchen) => {
-    console.log(`[ ~ handleChage ~ idKitchen]`, idKitchen)
     setSelectedAssignedKitchens((prev) => {
       if (prev.includes(idKitchen)) {
         return prev.filter((k) => k !== idKitchen);

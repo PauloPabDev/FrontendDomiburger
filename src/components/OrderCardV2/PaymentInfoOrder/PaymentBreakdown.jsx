@@ -5,7 +5,6 @@ import { useWorker } from "../../../Context/WorkerContext";
 
 const PaymentBreakdown = ({ totalPrice, delivery, orderItems }) => {
   const { listProducts } = useWorker();
-  console.log("orderItems en PaymentBreakdown:", orderItems);
 
   // Enriquecer orderItems con datos de productos
   const enrichedItems = orderItems?.map((item) => {

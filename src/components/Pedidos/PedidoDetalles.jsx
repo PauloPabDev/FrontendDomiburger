@@ -1,5 +1,5 @@
 import { Container, } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
@@ -17,7 +17,7 @@ const PedidoDetalles = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const orderService = new OrderService(token);
+  const orderService = useMemo(() => new OrderService(token), [token]);
 
   useEffect(() => {
     const fetchOrder = async () => {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { LocationsService } from "../../apis/clientV2/LocationsService";
 import { useAuth } from "../../Context/AuthContext";
 
@@ -9,7 +9,7 @@ const useFindLocationsByIdClient = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const locationsService = new LocationsService(token);
+  const locationsService = useMemo(() => new LocationsService(token), [token]);
 
   const findLocationsByIdClient = async (idClient) => {
     if (!idClient) {

@@ -1,7 +1,7 @@
 import { Container, Spinner, Row, Col } from 'react-bootstrap';
 import LayoutAdmin from '../../Layout/Admin';
 import PaginationComponent from '../../components/Pagination';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ProductsService } from '../../apis/clientV2/ProductsService';
 import { useAuth } from '../../Context/AuthContext';
@@ -19,7 +19,7 @@ const AdminProducts = () => {
   const page = parseInt(searchParams.get('page') || '1', 10);
 
   const { token } = useAuth();
-  const productsService = new ProductsService(token);
+  const productsService = useMemo(() => new ProductsService(token), [token]);
 
   // Función para obtener los productos desde la API
   const fetchProducts = async () => {

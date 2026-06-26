@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { LocationsService } from "../../../apis/clientV2/LocationsService";
 import { useAuth } from "../../../Context/AuthContext";
 
@@ -8,7 +8,7 @@ const useDeleteLocation = () => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
-  const locationService = new LocationsService(token);
+  const locationService = useMemo(() => new LocationsService(token), [token]);
 
   const deleteLocation = async (id) => {
     setLoading(true);

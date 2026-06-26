@@ -8,7 +8,6 @@ export const registerWithEmail = async (email, password) => {
     const userCredential = await createUserWithEmailAndPassword(FirebaseAuth, email, password);
     return userCredential.user;
   } catch (error) {
-    console.error("Error en el registro:", error);
     throw error;
   }
 };
@@ -19,7 +18,6 @@ export const loginWithEmail = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(FirebaseAuth, email, password);
     return userCredential.user;
   } catch (error) {
-    console.error("Error al iniciar sesión:", error);
     throw error;
   }
 };
@@ -28,9 +26,7 @@ export const loginWithEmail = async (email, password) => {
 export const logout = async () => {
   try {
     await signOut(FirebaseAuth);
-    console.log("Sesión cerrada correctamente");
   } catch (error) {
-    console.error("Error al cerrar sesión:", error);
     throw error;
   }
 };

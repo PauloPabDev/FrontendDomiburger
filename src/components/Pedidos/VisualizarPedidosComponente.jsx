@@ -47,7 +47,6 @@ const VisualizarPedidosComponente = () => {
   }, [page]);
 
   const handleCardCreateOrderClick = () => {
-    console.log('handleCardCreateOrderClick');
     navigate('/formAdmin');
   }
 

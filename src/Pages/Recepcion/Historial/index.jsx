@@ -9,18 +9,11 @@ const HistoryOrders = () => {
   // Pedir las órdenes del día con fechas formateadas en UTCz
   const { error, data: ordenes, loading, fetchOrders } = useOrderHistory();
   const fetchData = async () => {
-    console.group('fetchData date');
-    // const { start, end } = getRangoDiaInternacional(dayDate);
     const start = new Date();
     start.setHours(0, 0, 0, 0);
     const end = new Date();
     end.setHours(23, 59, 59, 999);
-    const startDate = start.toGMTString();
-    const endDate = end.toGMTString();
-    console.log('startDate', startDate);
-    console.log('endDate', endDate);
-    console.groupEnd()
-    await fetchOrders(startDate, endDate);
+    await fetchOrders(start.toGMTString(), end.toGMTString());
   };
   useEffect(() => {
     fetchData();
