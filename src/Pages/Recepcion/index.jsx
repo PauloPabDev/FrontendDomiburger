@@ -7,6 +7,7 @@ import { ColsPedidos } from '../../components/ColsPedidos';
 import SelectListDomiciliarios from '../../components/SelectListDomiciliarios';
 import LayoutRecepcion from '../../Layout/Recepcion';
 import Sidebar from '../../components/Sidebar';
+import { KitchenActiveBanner } from '../../components/Kitchens/KitchenActiveBanner';
 
 const RecepcionContent = () => {
   // Contexto global (por ejemplo, para los pedidos)
@@ -17,7 +18,8 @@ const RecepcionContent = () => {
 
   return (
     <>
-      <Container fluid>
+      <Container fluid className="pt-2">
+        <KitchenActiveBanner />
         <Row>
           {/* Si showSidebar es true, se renderiza el Sidebar */}
           {showSidebar && <Sidebar />}

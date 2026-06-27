@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { FaBoxOpen } from 'react-icons/fa';
 import LayoutCocina from '../../Layout/LayoutCocina';
 import { OrderCardV2 } from '../../components/OrderCardV2';
+import { KitchenActiveBanner } from '../../components/Kitchens/KitchenActiveBanner';
 
 
 const Cocina = () => {
@@ -51,7 +52,8 @@ const Cocina = () => {
   return (
     <>
       <LayoutCocina>
-        <Container fluid  >
+        <Container fluid className="pt-3">
+          <KitchenActiveBanner />
           <Row>
             <ListPedidos />
           </Row>
