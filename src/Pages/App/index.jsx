@@ -10,6 +10,7 @@ import { PreferencesProvider } from '../../Context/PreferencesContext';
 import { UserRoutes } from './routes/UserRoutes';
 import { AuthProvider } from '../../Context/AuthContext';
 import { CacheProvider } from '../../Context/CacheContext';
+import DeprecationBanner from '../../components/DeprecationBanner/DeprecationBanner';
 
 const AppRoutes = () => {
   return (
@@ -37,6 +38,7 @@ const AppRoutes = () => {
 const App = () => {
   return (
     <Router>
+      <DeprecationBanner />
       <AppRoutes />
     </Router>
   )

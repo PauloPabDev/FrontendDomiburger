@@ -1,0 +1,126 @@
+.deprecation-banner {
+  background: linear-gradient(135deg, #cc0000 0%, #ff0000 50%, #cc0000 100%);
+  border-bottom: 4px solid #990000;
+  padding: 20px 15px;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 -2px 8px rgba(0, 0, 0, 0.2);
+  animation: deprecation-pulse 2s infinite;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+@keyframes deprecation-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.deprecation-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.deprecation-banner-icon {
+  font-size: 40px;
+  flex-shrink: 0;
+  animation: deprecation-bounce 1.5s infinite;
+}
+
+@keyframes deprecation-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.deprecation-banner-text {
+  flex: 1;
+  min-width: 250px;
+  color: white;
+  margin: 0;
+}
+
+.deprecation-banner-title {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.deprecation-banner-message {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.deprecation-banner-message strong {
+  font-weight: bold;
+  color: #ffff00;
+  text-decoration: underline;
+}
+
+.deprecation-banner-button {
+  background-color: #ffff00;
+  color: #cc0000;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+  border: 3px solid #990000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.deprecation-banner-button:hover {
+  background-color: #ffff00;
+  color: #cc0000;
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
+.deprecation-banner-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .deprecation-banner-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .deprecation-banner-icon {
+    font-size: 32px;
+  }
+
+  .deprecation-banner-title {
+    font-size: 18px;
+  }
+
+  .deprecation-banner-message {
+    font-size: 14px;
+  }
+
+  .deprecation-banner-button {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+  }
+}
