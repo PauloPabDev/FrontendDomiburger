@@ -1,18 +1,4 @@
-/* Asegura que el layout ocupe toda la pantalla */
-.layout-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ocupa toda la pantalla */
-}
-
-/* Empuja el contenido hacia arriba si es necesario */
-.content {
-  flex: 1;
-}
-
-.firebase-emulator-warning {
-  font-size: 34%; /* Reduce el tamaño de la fuente */
-  padding: 1px; /* Ajusta el relleno */
-  width: 10%; /* Reduce el ancho */
-  height: auto; /* Mantiene la proporción */
+html {
+  min-width: 320px;
+  min-height: 100%;
 }
